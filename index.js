@@ -25,7 +25,7 @@ function viewTodos() {
     // check if there are any todos 
     if (todos.length === 0) {
         data = `<li class="list-group-item d-flex align-items-center border-0 mb-2 rounded" style="background-color: #f4f6f7;">
-        <span>No todos yet!</span>
+        <span>No todos yet! Add them to replace me.... </span>
     </li>`;
     } else {
 
@@ -38,13 +38,28 @@ function viewTodos() {
         <li class="list-group-item d-flex align-items-center border-0 mb-2 rounded" style="background-color: #f4f6f7;">
             <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." onclick="completedTodo(${i})" />
             <span id="todo${i}">${todos[i]}</span>
-            <i id="" onclick="" class="fas fa-edit ms-2" style="cursor: pointer;"></i>
+            <i id="update${i}" onclick="updateTodo(${i})" class="fas fa-edit ms-2" style="cursor: pointer;"></i>
         </li>
         `;
         }
     }
     // Find the HTML element with the id "mytodo" and set its innerHTML to the data string
     document.getElementById("mytodo").innerHTML = data;
+}
+
+function updateTodo(i){
+    // Get the HTML element with the id "form2" and assign it to the variable inputField
+    let inputField = document.getElementById("form2");
+
+    // Set the value of the inputField to the todo at the given index
+    inputField.value = todos[i];
+
+    // Set the focus to the inputField- without this there is huge bug with edit button clicked. 
+    inputField.focus();
+
+    // Get the  button id and change its text content to "Update"
+    document.getElementById("addtodobutton").textContent = "Update";
+
 }
 
 // Function for completed todos
@@ -59,6 +74,7 @@ function completedTodo(i) {
 
     // Remove the checkbox from the cloned node
     clonedNode.removeChild(checkbox);
+
 
     // Create a delete icon
     let deleteIcon = document.createElement("i");
