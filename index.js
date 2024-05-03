@@ -28,6 +28,7 @@ function viewTodos() {
         <li class="list-group-item d-flex align-items-center border-0 mb-2 rounded" style="background-color: #f4f6f7;">
             <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." onclick="completedTodo(${i})" />
             <span id="todo${i}">${todos[i]}</span>
+            <i id="" onclick="" class="fas fa-edit ms-2" style="cursor: pointer;"></i>
         </li>
         `;
     }
