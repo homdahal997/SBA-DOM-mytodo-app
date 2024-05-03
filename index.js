@@ -13,26 +13,36 @@ function addTodo() {
         viewTodos();
     }
 }
-
+// load todos with window load to see if there are any existing todos already.
+window.onload = function() {
+    viewTodos();
+}
 // function to view todos
 function viewTodos() {
     // Empty string variable to hold each todo data
     let data = "";
 
-    // Loop through each item in the todos array
-    for (let i = 0; i < todos.length; i++) {
-        // Append a string to the data variable. This string is a list item that includes:
-        // - a checkbox than send checked todos to completed tabs
-        // - a span that displays the todo text 
-        data += `
+    // check if there are any todos 
+    if (todos.length === 0) {
+        data = `<li class="list-group-item d-flex align-items-center border-0 mb-2 rounded" style="background-color: #f4f6f7;">
+        <span>No todos yet!</span>
+    </li>`;
+    } else {
+
+        // Loop through each item in the todos array
+        for (let i = 0; i < todos.length; i++) {
+            // Append a string to the data variable. This string is a list item that includes:
+            // - a checkbox than send checked todos to completed tabs
+            // - a span that displays the todo text 
+            data += `
         <li class="list-group-item d-flex align-items-center border-0 mb-2 rounded" style="background-color: #f4f6f7;">
             <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." onclick="completedTodo(${i})" />
             <span id="todo${i}">${todos[i]}</span>
             <i id="" onclick="" class="fas fa-edit ms-2" style="cursor: pointer;"></i>
         </li>
         `;
+        }
     }
-
     // Find the HTML element with the id "mytodo" and set its innerHTML to the data string
     document.getElementById("mytodo").innerHTML = data;
 }
