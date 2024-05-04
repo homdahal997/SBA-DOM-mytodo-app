@@ -47,6 +47,23 @@ function viewTodos() {
     document.getElementById("mytodo").innerHTML = data;
 }
 
+function updateTodo(i) {
+    // Get the todo item by its id
+    let todoEl = document.getElementById(`todo${i}`);
+    
+    // Get the current todo text
+    let currentTodo = todoEl.textContent;
+
+    // Prompt the user for the new todo text
+    let newTodo = prompt("Edit your todo", currentTodo);
+
+    // If the user entered a new todo, update the todo item
+    if (newTodo) {
+        todos[i] = newTodo;
+        viewTodos();
+    }
+}
+
 // Function for completed todos
 function completedTodo(i) {
     // Get todo element using todo name with corresponding index
@@ -65,7 +82,7 @@ function completedTodo(i) {
     if (updateIcon) {
         clonedNode.removeChild(updateIcon);
     }
-    
+
     // Create a delete icon
     let deleteIcon = document.createElement("i");
 
