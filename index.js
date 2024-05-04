@@ -14,7 +14,7 @@ function addTodo() {
     }
 }
 // load todos with window load to see if there are any existing todos already.
-window.onload = function() {
+window.onload = function () {
     viewTodos();
 }
 // function to view todos
@@ -47,7 +47,8 @@ function viewTodos() {
     document.getElementById("mytodo").innerHTML = data;
 }
 
-function updateTodo(i){
+// function to update todos
+function updateTodo(i) {
     // Get the HTML element with the id "form2" and assign it to the variable inputField
     let inputField = document.getElementById("form2");
 
@@ -60,6 +61,28 @@ function updateTodo(i){
     // Get the  button id and change its text content to "Update"
     document.getElementById("addtodobutton").textContent = "Update";
 
+    // Set updateIndex to the index of the todo being updated
+    updateIndex = i;
+
+}
+
+// function to save updated todos
+function saveUpdate(i) {
+    // Get value of html element of the form
+    let updatedTodo = document.getElementById("form2").value;
+
+    if (updatedTodo) { // if true
+        // Update the todo at the given index with the updatedTodo
+        todos[i] = updatedTodo;
+        // Update the todos
+        viewTodos();
+
+        // Clear the input field
+        document.getElementById("form2").value = "";
+
+        // Change the text content of the  button element to "Add"
+        document.getElementById("addtodobutton").textContent = "Add";
+    }
 }
 
 // Function for completed todos
