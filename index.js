@@ -47,44 +47,6 @@ function viewTodos() {
     document.getElementById("mytodo").innerHTML = data;
 }
 
-// function to update todos
-function updateTodo(i) {
-    // Get the HTML element with the id "form2" and assign it to the variable inputField
-    let inputField = document.getElementById("form2");
-
-    // Set the value of the inputField to the todo at the given index
-    inputField.value = todos[i];
-
-    // Set the focus to the inputField- without this there is huge bug with edit button clicked. 
-    inputField.focus();
-
-    // Get the  button id and change its text content to "Update"
-    document.getElementById("addtodobutton").textContent = "Update";
-
-    // Set updateIndex to the index of the todo being updated
-    updateIndex = i;
-
-}
-
-// function to save updated todos
-function saveUpdate(i) {
-    // Get value of html element of the form
-    let updatedTodo = document.getElementById("form2").value;
-
-    if (updatedTodo) { // if true
-        // Update the todo at the given index with the updatedTodo
-        todos[i] = updatedTodo;
-        // Update the todos
-        viewTodos();
-
-        // Clear the input field
-        document.getElementById("form2").value = "";
-
-        // Change the text content of the  button element to "Add"
-        document.getElementById("addtodobutton").textContent = "Add";
-    }
-}
-
 // Function for completed todos
 function completedTodo(i) {
     // Get todo element using todo name with corresponding index
@@ -98,7 +60,12 @@ function completedTodo(i) {
     // Remove the checkbox from the cloned node
     clonedNode.removeChild(checkbox);
 
-
+    // Remove update icon
+    let updateIcon = clonedNode.querySelector(`#update${i}`);
+    if (updateIcon) {
+        clonedNode.removeChild(updateIcon);
+    }
+    
     // Create a delete icon
     let deleteIcon = document.createElement("i");
 
