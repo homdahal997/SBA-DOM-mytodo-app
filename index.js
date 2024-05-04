@@ -2,9 +2,9 @@
 let todos = [];
 
 // event listener to add todos when enter key is pressed
-document.getElementById("form2").addEventListener("keydown", (evt) =>{
-    if (event.key === "Enter") {
-        event.preventDefault();
+document.getElementById("form2").addEventListener("keydown", (evt) => {
+    if (evt.key === "Enter") {
+        evt.preventDefault();
         addTodo();
     }
 })
@@ -59,7 +59,7 @@ function viewTodos() {
 function updateTodo(i) {
     // Get the todo item by its id
     let todoEl = document.getElementById(`todo${i}`);
-    
+
     // Get the current todo text
     let currentTodo = todoEl.textContent;
 
