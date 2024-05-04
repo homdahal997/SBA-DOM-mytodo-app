@@ -1,6 +1,14 @@
 // Create an array to hold todos 
 let todos = [];
 
+// event listener to add todos when enter key is pressed
+document.getElementById("form2").addEventListener("keydown", (evt) =>{
+    if (event.key === "Enter") {
+        event.preventDefault();
+        addTodo();
+    }
+})
+
 // function to add todos
 function addTodo() {
     let todo = document.getElementById("form2").value; // get the field from html
@@ -11,6 +19,7 @@ function addTodo() {
         // push new todo to our created array.
         todos.push(todo);
         viewTodos();
+        document.getElementById("form2").value = ""; // Clear the input field
     }
 }
 // load todos with window load to see if there are any existing todos already.
@@ -22,10 +31,10 @@ function viewTodos() {
     // Empty string variable to hold each todo data
     let data = "";
 
-    // check if there are any todos 
+    // check if there are any todos- if so display no todos message.
     if (todos.length === 0) {
         data = `<li class="list-group-item d-flex align-items-center border-0 mb-2 rounded" style="background-color: #f4f6f7;">
-        <span>No todos yet! Add them to replace me.... </span>
+        <span>No todos yet! Add them to replace in the input field  </span>
     </li>`;
     } else {
 
